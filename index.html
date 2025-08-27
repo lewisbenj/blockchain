@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thử Nghiệm Blockchain Đơn Giản</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elliptic/6.5.4/elliptic.min.js"></script>
+    <script src="blockchain.js" defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        .wallet, .transaction, .blockchain {
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        pre {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .status { font-weight: bold; color: #27ae60; }
+        .error { color: #e74c3c; }
+        .copy-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .copy-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thử Nghiệm Blockchain Đơn Giản</h1>
+
+    <div class="section wallet">
+        <h2>Ví</h2>
+        <button onclick="taoViMoi()">Tạo Ví Mới</button>
+        <div id="wallet-list"></div>
+    </div>
+
+    <div class="section transaction">
+        <h2>Tạo Giao Dịch</h2>
+        <label>Địa Chỉ Ví Gửi (Khóa Công Khai):</label><br>
+        <input type="text" id="fromAddress" placeholder="Nhập khóa công khai của ví gửi"><br>
+        <label>Khóa Riêng (để ký):</label><br>
+        <input type="text" id="privateKey" placeholder="Nhập khóa riêng của ví gửi"><br>
+        <label>Địa Chỉ Ví Nhận (Khóa Công Khai):</label><br>
+        <input type="text" id="toAddress" placeholder="Nhập khóa công khai của ví nhận"><br>
+        <label>Số Tiền:</label><br>
+        <input type="number" id="amount" placeholder="Nhập số tiền"><br>
+        <button onclick="taoGiaoDich()">Tạo Giao Dịch</button>
+        <div id="transaction-status"></div>
+    </div>
+
+    <div class="section blockchain">
+        <h2>Blockchain</h2>
+        <button onclick="khoiMine()">Khai Thác Khối Mới</button>
+        <div id="chain-status"></div>
+        <div id="blockchain-list"></div>
+    </div>
+</body>
+</html>
