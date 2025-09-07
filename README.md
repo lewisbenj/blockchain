@@ -28,7 +28,7 @@ Steps
 
 Clone the repository to your machine:
 ```
-git clone https://github.com/your-username/blockchain.git
+[git clone https://github.com/lewisbenj/blockchain.git
 ```
 
 Navigate to the project directory:cd blockchain-demo
